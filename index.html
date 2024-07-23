@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Card</title>
+    <link rel="stylesheet" href="Edward_kahy.css">
+    <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header img {
+            margin-left: 100px; /* Adjust the space between the text and the image */
+            width: 150px; /* Adjust the image size */
+            height: 100px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .download-vcard-btn {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .download-vcard-btn:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="business-card" id="business-card">
+            <div class="header">
+                <div>
+                    <h1>Edward Kahy</h1>
+                    <p class="title">CEO</p>
+                </div>
+                <img src="ATALIAN-LOGO.png" alt="Edward Kahy's Logo">
+            </div>
+            <hr>
+            <div class="contact-info">
+                <p><a href="tel:+9611495571">T: +961.1.495.571</a>/2/3</p>
+                <p><a href="tel:+9611495574">F: +961.1.495.574</a></p>
+            </div>
+            <div class="footer">
+                <address>
+                    Centre Minassian 7th Floor,<br>
+                    Jisr el wate, Sin el Fil, Lebanon<br>
+                    <a href="http://www.atalianswitchgroup.com" class="highlight">www.atalianswitchgroup.com</a><br>
+                    <span class="highlight">EUROPE - USA - ASIA - AFRICA - ME</span>
+                </address>
+                <button class="download-vcard-btn" onclick="downloadVCard()">Save Contact</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadVCard() {
+            const vCardData = `
+BEGIN:VCARD
+VERSION:3.0
+FN:Edward Kahy
+TITLE:CEO
+TEL;TYPE=WORK,VOICE:+9611495571
+TEL;TYPE=WORK,VOICE:+9611495572
+TEL;TYPE=WORK,VOICE:+9611495573
+TEL;TYPE=WORK,FAX:+9611495574
+ADR;TYPE=WORK:;;Centre Minassian 7th Floor;Jisr el wate;Sin el Fil;Lebanon
+URL:http://www.atalianswitchgroup.com
+END:VCARD
+`;
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Edward_Kahy_Business_Card.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
